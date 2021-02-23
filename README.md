@@ -1,4 +1,4 @@
-React x TS boilerplate
+Meal Generator
 
 ## Required
 
@@ -8,7 +8,7 @@ React x TS boilerplate
 ## Installation
 
 ```bash
-git clone https://github.com/alice42/WIP-ReactxTS-boilerplate.git && cd WIP-ReactxTS-boilerplate
+git clone https://github.com/alice42/WIP-MealGenerator.git && cd WIP-MealGenerator
 npm run setup
 ```
 

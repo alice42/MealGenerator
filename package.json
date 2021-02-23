@@ -1,5 +1,5 @@
 {
-  "name": "WIP-ReactxTS-boilerplate",
+  "name": "WIP-MealGenerator",
   "version": "1.0.0",
   "description": "a simple react app with typescript",
   "main": "webpack.config.js",
@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alice42/WIP-ReactxTS-boilerplate.git"
+    "url": "git+https://github.com/alice42/WIP-MealGenerator.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alice42/WIP-ReactxTS-boilerplate/issues"
+    "url": "https://github.com/alice42/WIP-MealGenerator/issues"
   },
   "dependencies": {
     "babel-eslint": "^10.1.0",
