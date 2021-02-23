@@ -4,7 +4,7 @@ const app = new express()
 
 app.use(express.static('dist'))
 
-app.get('*', (req, res) => {
+app.get('*', (_req: any, res: { sendFile: (arg0: any) => void }) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 })
 
