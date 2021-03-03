@@ -1,28 +1,16 @@
 import React, { FunctionComponent, useState } from 'react'
 import * as searchTypes from './searchInterfaces'
+import MyTag from './SearchTags'
 
-const SearchComponent: FunctionComponent<searchTypes.PropsSearchComponent> = (
-  props
-) => {
-  const { onSearch, onClear } = props
-  const [ingredients, setIngredients] = useState('')
-  const [query, setQuery] = useState('')
+const SearchComponent: FunctionComponent<searchTypes.PropsSearchComponent> = ({
+  onSearch,
+}) => {
+  const [ingredients, setIngredients] = useState<string[]>([])
+  const [query, setQuery] = useState<string>('')
 
   return (
     <div>
-      <input
-        value={ingredients}
-        placeholder="ingredients"
-        onChange={(e) => setIngredients(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          onSearch(ingredients, query, 1)
-          setQuery('')
-        }}
-      >
-        Get Recipes
-      </button>
+      <MyTag ingredients={ingredients} setIngredients={setIngredients} />
       <input
         value={query}
         placeholder="query"
@@ -30,13 +18,12 @@ const SearchComponent: FunctionComponent<searchTypes.PropsSearchComponent> = (
       />
       <button
         onClick={() => {
-          onSearch(ingredients, query, 1)
+          onSearch(ingredients.join(','), query, 1)
           setQuery('')
         }}
       >
         Get Recipes
       </button>
-      <button onClick={onClear}>Clear Results</button>
     </div>
   )
 }

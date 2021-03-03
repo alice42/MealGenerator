@@ -4,16 +4,14 @@ import { PropsResultsComponent } from './resultsInterfaces'
 // @ts-ignore
 import ReduxLazyScroll from 'redux-lazy-scroll'
 
-const RecipesComponent: FunctionComponent<PropsResultsComponent> = (props) => {
-  const {
-    recipes,
-    isLoading,
-    error,
-    hasMore,
-    search,
-    onLoadNextPageRecipe,
-  } = props
-
+const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
+  recipes,
+  isLoading,
+  error,
+  hasMore,
+  search,
+  onLoadNextPageRecipe,
+}) => {
   const memoizedLoadMore = useCallback(() => {
     onLoadNextPageRecipe(search.ingredients, search.query)
   }, [hasMore])

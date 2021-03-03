@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { Layout, Breadcrumb } from 'antd'
+import { Layout, Breadcrumb, BackTop } from 'antd'
 
 import A from '../../feature/Search/SearchContainer'
 import C from '../../feature/Results/ResultsContainer'
@@ -20,6 +20,7 @@ const ContentComponent: FunctionComponent = () => (
       Content RESULTS
       <C />
     </div>
+    <BackTop />
   </Content>
 )
 
