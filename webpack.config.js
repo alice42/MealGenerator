@@ -30,16 +30,15 @@ module.exports = {
           },
         ],
       },
-      
       devServer: {
         proxy: {
-        '/api': {
+          '/api': {
             target: 'http://www.recipepuppy.com',
                 secure: false,
                 changeOrigin: true,
+          }
         }
-    }
-},
+      },
       plugins: 
       [new hwp({favicon: path.join(__dirname, '/src/assets/favicon/favicon.ico'),
        template: path.join(__dirname, '/public/index.html') })]

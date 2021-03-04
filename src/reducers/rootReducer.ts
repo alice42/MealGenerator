@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import recipesReducer from "./recipesReducer";
+import recipesReducer from "./dataReducer";
 import isLoadingReducer from "./isLoadingReducer";
 import errorReducer from "./errorReducer";
 

@@ -21,10 +21,6 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
     return <div>{error}</div>
   }
 
-  if (isLoading) {
-    return <div>{'Loading..'}</div>
-  }
-
   return (
     <ReduxLazyScroll
       isFetching={isLoading}
@@ -32,7 +28,7 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
       loadMore={memoizedLoadMore}
       hasMore={hasMore}
     >
-      <ResultsList recipesListItems={recipes} />
+      <ResultsList recipesListItems={recipes} loading={isLoading} />
     </ReduxLazyScroll>
   )
 }

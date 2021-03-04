@@ -21,10 +21,12 @@ export interface PropsResultsComponent {
 
 export interface PropsResultList {
     recipesListItems: []
+    loading: boolean
   }
 
 export interface PropsResultItem {
     recipeItem: RecipeModel
+    loading: boolean
   }
 
   export type ResultsInterface =

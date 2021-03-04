@@ -1,30 +1,31 @@
+import { Skeleton, Card } from 'antd'
 import React, { FunctionComponent } from 'react'
 import * as resultsTypes from './resultsInterfaces'
+import defaultImg from '../../../assets/images/default_img.jpg'
 
-const ResultItem: FunctionComponent<resultsTypes.PropsResultItem> = (
-  { recipeItem },
+const { Meta } = Card
+
+const ResultsListItem: FunctionComponent<resultsTypes.PropsResultItem> = (
+  { recipeItem, loading },
   key: string
-) => (
-  <div key={key} className="w3-card-2">
-    <img
-      className="w3-image w3-rounded"
-      src={recipeItem.thumbnail}
-      alt={recipeItem.title}
-      style={{
-        width: 100,
-      }}
-    />
-    <a className="btn btn-default" href={recipeItem.href}>
-      Read the entire recipe
-    </a>
-    <div className="w3-container">
-      <h4>
-        <b>{recipeItem.title}</b>
-      </h4>
-      <p>{recipeItem.ingredients}</p>
-    </div>
-    <hr></hr>
-  </div>
-)
+) => {
+  return (
+    <Card>
+      <Skeleton loading={loading} active>
+        <Meta
+          avatar={
+            <img
+              style={{ width: 80, height: 80, borderRadius: 3 }}
+              src={recipeItem.thumbnail || defaultImg}
+              alt={recipeItem.title}
+            />
+          }
+          title={recipeItem.title}
+          description={recipeItem.ingredients}
+        />
+      </Skeleton>
+    </Card>
+  )
+}
 
-export default ResultItem
+export default ResultsListItem
