@@ -3,5 +3,10 @@ export interface PropsSearchComponent {
     onClear(): void
   }
 
-  export type ResultsInterface =
-  | PropsSearchComponent;
+export interface PropsSearchIngredientsFormItem {
+  name: string
+}
+
+export type ResultsInterface =
+  | PropsSearchComponent
+  | PropsSearchIngredientsFormItem;
