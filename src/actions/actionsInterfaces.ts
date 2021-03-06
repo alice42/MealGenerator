@@ -18,6 +18,7 @@ export interface GetNextPageRecipesAction {
   type: typeof GET_NEXT_PAGE_RECIPES;
   ingredients: string;
   query: string;
+  page?: number | string
 }
 
 export const GET_RECIPES_REQUEST = "recipesActionTypes/GET_RECIPES_REQUEST";

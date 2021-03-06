@@ -5,10 +5,10 @@ import defaultImg from '../../../assets/images/default_img.jpg'
 
 const { Meta } = Card
 
-const ResultsListItem: FunctionComponent<resultsTypes.PropsResultItem> = (
-  { recipeItem, loading },
-  key: string
-) => {
+const ResultsListItem: FunctionComponent<resultsTypes.PropsResultItem> = ({
+  recipeItem,
+  loading,
+}) => {
   return (
     <Card>
       <Skeleton loading={loading} active>

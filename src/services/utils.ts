@@ -10,9 +10,11 @@ export const basicFetch = async (method: string, searchQuery: { i: string; q: st
         'Content-Type': 'application/json',
       },
     })
-    let responseJson = await response.json();
-    return responseJson.results
+    if (response.status === 200){
+      let responseJson = await response.json();
+      return responseJson
+    } else return response
   } catch (error) {
-    return error
+    throw error
   }
 }

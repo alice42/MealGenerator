@@ -8,17 +8,26 @@ function* onLoadRecipes({ ingredients, query, page }: actionTypes.GetRecipesActi
   try {
     yield put(actionCreators.getRecipesRequest());
     const data = yield call(fetchRecipes, ingredients, query, page);
-    yield put(actionCreators.getRecipesSuccess(data, 1));
+    console.log('bbbb', data)
+    if (data.results && data.results.length)
+      yield put(actionCreators.getRecipesSuccess(data.results, 1));
   } catch (error) {
+   
     yield put(actionCreators.getRecipesFailure(error.response.data.error));
   }
 }
 
-function* onLoadNextPageRecipes({ ingredients, query }: actionTypes.GetRecipesAction) {
+function* onLoadNextPageRecipes({ ingredients, query, page }: actionTypes.GetRecipesAction) {
   try {
-    const nextPage = yield select(state => state.recipes.search.page + 1)
+    const nextPage = !page ? yield select(state => state.recipes.search.page + 1) : page
     const data = yield call(fetchRecipes, ingredients, query, nextPage);
-    yield put(actionCreators.getRecipesSuccess(data, nextPage));
+    if (data.status === 500){
+      yield put(actionCreators.getNextPageRecipes(ingredients, query, nextPage + 1));
+    }
+    else if (data.results && data.results.length){
+      yield put(actionCreators.getRecipesSuccess(data.results, nextPage));
+    }
+    else  yield put(actionCreators.getRecipesFailure(data.error));
   } catch (error) {
     yield put(actionCreators.getRecipesFailure(error.response.data.error));
   }
@@ -28,10 +37,10 @@ function* watchOnLoadRecipes() {
   yield takeEvery(actionTypes.GET_RECIPES, onLoadRecipes);
 }
 
-function* watchonLoadNextPageRecipes() {
+function* watchOnLoadNextPageRecipes() {
   yield takeEvery(actionTypes.GET_NEXT_PAGE_RECIPES, onLoadNextPageRecipes);
 }
 
 export default function* recipesSaga() {
-  yield all([fork(watchOnLoadRecipes), fork(watchonLoadNextPageRecipes)]);
+  yield all([fork(watchOnLoadRecipes), fork(watchOnLoadNextPageRecipes)]);
 }

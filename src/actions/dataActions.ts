@@ -1,7 +1,8 @@
 import * as actions from "./actionsInterfaces";
 
-
-  export function setRecipes(recipes: []): actions.SetRecipesAction {
+  export function setRecipes(
+    recipes: []
+  ): actions.SetRecipesAction {
     return {
       type: actions.SET_RECIPES,
       recipes,
@@ -25,15 +26,18 @@ import * as actions from "./actionsInterfaces";
   export function getNextPageRecipes(
     ingredients: string,
     query: string,
+    page?: number | string
   ): actions.GetNextPageRecipesAction {
     return {
       type: actions.GET_NEXT_PAGE_RECIPES,
       ingredients,
       query,
+      page
     };
   }
   
-  export function getRecipesRequest(): actions.GetRecipesRequestAction {
+  export function getRecipesRequest(
+  ): actions.GetRecipesRequestAction {
     return {
       type: actions.GET_RECIPES_REQUEST
     };

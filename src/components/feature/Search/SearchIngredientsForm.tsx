@@ -2,9 +2,11 @@ import React, { FunctionComponent } from 'react'
 import SearchIngredientsFormItem from './SearchIngredientsFormItem'
 
 import { Form, Col, Row } from 'antd'
-
-const SearchIngredientsForm: FunctionComponent = () => {
-  const ingredientSort = ['with', 'without']
+interface A {
+  a: boolean
+}
+const SearchIngredientsForm: FunctionComponent<A> = ({ a }) => {
+  const ingredientSort = a ? ['with', 'without'] : ['with']
   return (
     <Form.Item noStyle>
       <Row gutter={16}>

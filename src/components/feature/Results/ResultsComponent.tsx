@@ -16,20 +16,24 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
     onLoadNextPageRecipe(search.ingredients, search.query)
   }, [hasMore])
 
-  if (error) {
-    console.log('error: ', error)
-    return <div>{error}</div>
-  }
+  if (error) return <div>{error}</div>
 
   return (
-    <ReduxLazyScroll
-      isFetching={isLoading}
-      errorMessage={error}
-      loadMore={memoizedLoadMore}
-      hasMore={hasMore}
-    >
-      <ResultsList recipesListItems={recipes} loading={isLoading} />
-    </ReduxLazyScroll>
+    <>
+      <ReduxLazyScroll
+        isFetching={isLoading}
+        errorMessage={error}
+        hasMore={hasMore}
+        loadMore={memoizedLoadMore}
+      >
+        <ResultsList recipesListItems={recipes} loading={isLoading} />
+      </ReduxLazyScroll>
+      {!hasMore && !error && !!recipes.length && (
+        <div style={{ textAlign: 'center' }}>
+          All the posts has been loaded successfully.
+        </div>
+      )}
+    </>
   )
 }
 
