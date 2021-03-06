@@ -1,10 +1,10 @@
-import * as actions from "./actionsInterfaces";
+import * as actionsTypes from "./actionsInterfaces";
 
   export function setRecipes(
     recipes: []
-  ): actions.SetRecipesAction {
+  ): actionsTypes.SetRecipesAction {
     return {
-      type: actions.SET_RECIPES,
+      type: actionsTypes.SET_RECIPES,
       recipes,
       hasMore: recipes.length > 0
     };
@@ -14,9 +14,9 @@ import * as actions from "./actionsInterfaces";
     ingredients: string,
     query: string,
     page: string | number
-  ): actions.GetRecipesAction {
+  ): actionsTypes.GetRecipesAction {
     return {
-      type: actions.GET_RECIPES,
+      type: actionsTypes.GET_RECIPES,
       ingredients,
       query,
       page
@@ -27,9 +27,9 @@ import * as actions from "./actionsInterfaces";
     ingredients: string,
     query: string,
     page?: number | string
-  ): actions.GetNextPageRecipesAction {
+  ): actionsTypes.GetNextPageRecipesAction {
     return {
-      type: actions.GET_NEXT_PAGE_RECIPES,
+      type: actionsTypes.GET_NEXT_PAGE_RECIPES,
       ingredients,
       query,
       page
@@ -37,18 +37,18 @@ import * as actions from "./actionsInterfaces";
   }
   
   export function getRecipesRequest(
-  ): actions.GetRecipesRequestAction {
+  ): actionsTypes.GetRecipesRequestAction {
     return {
-      type: actions.GET_RECIPES_REQUEST
+      type: actionsTypes.GET_RECIPES_REQUEST
     };
   }
   
   export function getRecipesSuccess(
     recipes: [],
     page: number | string
-  ): actions.GetRecipesSuccessAction {
+  ): actionsTypes.GetRecipesSuccessAction {
     return {
-      type: actions.GET_RECIPES_SUCCESS,
+      type: actionsTypes.GET_RECIPES_SUCCESS,
       recipes,
       page,
       hasMore: recipes.length > 0
@@ -57,9 +57,9 @@ import * as actions from "./actionsInterfaces";
   
   export function getRecipesFailure(
     error: Error | string
-  ): actions.GetRecipesFailureAction {
+  ): actionsTypes.GetRecipesFailureAction {
     return {
-      type: actions.GET_RECIPES_FAILURE,
+      type: actionsTypes.GET_RECIPES_FAILURE,
       error
     };
   }

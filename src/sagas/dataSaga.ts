@@ -8,11 +8,10 @@ function* onLoadRecipes({ ingredients, query, page }: actionTypes.GetRecipesActi
   try {
     yield put(actionCreators.getRecipesRequest());
     const data = yield call(fetchRecipes, ingredients, query, page);
-    console.log('bbbb', data)
     if (data.results && data.results.length)
       yield put(actionCreators.getRecipesSuccess(data.results, 1));
+    else yield put(actionCreators.getRecipesFailure(data.error));
   } catch (error) {
-   
     yield put(actionCreators.getRecipesFailure(error.response.data.error));
   }
 }
@@ -21,12 +20,10 @@ function* onLoadNextPageRecipes({ ingredients, query, page }: actionTypes.GetRec
   try {
     const nextPage = !page ? yield select(state => state.recipes.search.page + 1) : page
     const data = yield call(fetchRecipes, ingredients, query, nextPage);
-    if (data.status === 500){
+    if (data.status === 500)
       yield put(actionCreators.getNextPageRecipes(ingredients, query, nextPage + 1));
-    }
-    else if (data.results && data.results.length){
+    else if (data.results && data.results.length)
       yield put(actionCreators.getRecipesSuccess(data.results, nextPage));
-    }
     else  yield put(actionCreators.getRecipesFailure(data.error));
   } catch (error) {
     yield put(actionCreators.getRecipesFailure(error.response.data.error));

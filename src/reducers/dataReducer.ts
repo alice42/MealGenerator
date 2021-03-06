@@ -50,7 +50,6 @@ export default function recipesReducer(
         }
       };
     case actions.GET_RECIPES_SUCCESS:
-      console.log(action)
       return {
         ...state,
         recipes: [...state.recipes, ...action.recipes],

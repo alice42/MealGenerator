@@ -2,9 +2,7 @@ import React, { FunctionComponent } from 'react'
 import SearchIngredientsForm from './SearchIngredientsForm'
 import SearchQueryForm from './SearchQueryForm'
 import * as searchTypes from './searchInterfaces'
-
 import { Form, Button } from 'antd'
-import FormItem from 'antd/lib/form/FormItem'
 
 interface Values {
   query?: string
@@ -16,7 +14,7 @@ const SearchComponent: FunctionComponent<searchTypes.PropsSearchComponent> = ({
   onSearch,
 }) => {
   const [form] = Form.useForm()
-  const [problem, setProblem] = React.useState(false)
+  const [canExcludeIngredient, setCanExcludeIngredient] = React.useState(false)
 
   React.useEffect(() => {
     form.validateFields()
@@ -40,31 +38,32 @@ const SearchComponent: FunctionComponent<searchTypes.PropsSearchComponent> = ({
     const query =
       !allValues.query || (allValues.query && !allValues.query.length)
     if ((!query && with_) || (query && !with_)) {
-      setProblem(true)
-      console.log(form)
+      setCanExcludeIngredient(true)
     }
-    if (query && with_) setProblem(false)
+    if (query && with_) setCanExcludeIngredient(false)
   }
 
   return (
-    <Form
-      name="recipe_search"
-      form={form}
-      onFinish={onFinish}
-      onValuesChange={onValuesChange}
-    >
-      <SearchQueryForm />
-      <SearchIngredientsForm a={problem} />
-      <Form.Item>
-        <Button
-          type="primary"
-          htmlType="submit"
-          className="get-recipes-form-button"
-        >
-          Get Recipes
-        </Button>
-      </Form.Item>
-    </Form>
+    <div className="site-layout-background">
+      <Form
+        name="recipe_search"
+        form={form}
+        onFinish={onFinish}
+        onValuesChange={onValuesChange}
+      >
+        <SearchQueryForm />
+        <SearchIngredientsForm canExcludeIngredient={canExcludeIngredient} />
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="get-recipes-form-button"
+          >
+            Get Recipes
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   )
 }
 

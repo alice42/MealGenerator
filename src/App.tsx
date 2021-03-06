@@ -1,17 +1,15 @@
 import React, { FunctionComponent } from 'react'
-import { Layout } from 'antd'
-import ContentComponent from './components/layout/content/Content'
-import FooterComponent from './components/layout/footer/Footer'
-import HeaderComponent from './components/layout/header/Header'
+import ResultsContainer from './components/feature/Results/ResultsContainer'
+import SearchContainer from './components/feature/Search/SearchContainer'
+import LayoutComponent from './components/layout/LayoutComponent'
 
 import './App.css'
 
 const App: FunctionComponent = () => (
-  <Layout id="components-layout-demo-top">
-    <HeaderComponent />
-    <ContentComponent />
-    <FooterComponent />
-  </Layout>
+  <LayoutComponent>
+    <SearchContainer />
+    <ResultsContainer />
+  </LayoutComponent>
 )
 
 export default App

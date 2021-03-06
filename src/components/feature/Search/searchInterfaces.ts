@@ -7,6 +7,11 @@ export interface PropsSearchIngredientsFormItem {
   name: string
 }
 
-export type ResultsInterface =
+export interface PropsSearchIngredientsForm {
+  canExcludeIngredient: boolean
+}
+
+export type SearchInterface =
   | PropsSearchComponent
-  | PropsSearchIngredientsFormItem;
+  | PropsSearchIngredientsFormItem
+  | PropsSearchIngredientsForm;

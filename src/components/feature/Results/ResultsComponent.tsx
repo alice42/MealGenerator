@@ -19,7 +19,7 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
   if (error) return <div>{error}</div>
 
   return (
-    <>
+    <div className="site-layout-background">
       <ReduxLazyScroll
         isFetching={isLoading}
         errorMessage={error}
@@ -33,7 +33,7 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
           All the posts has been loaded successfully.
         </div>
       )}
-    </>
+    </div>
   )
 }
 

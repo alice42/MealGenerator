@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import SearchIngredientsFormItem from './SearchIngredientsFormItem'
-
+import * as searchTypes from './searchInterfaces'
 import { Form, Col, Row } from 'antd'
-interface A {
-  a: boolean
-}
-const SearchIngredientsForm: FunctionComponent<A> = ({ a }) => {
-  const ingredientSort = a ? ['with', 'without'] : ['with']
+
+const SearchIngredientsForm: FunctionComponent<searchTypes.PropsSearchIngredientsForm> = ({
+  canExcludeIngredient,
+}) => {
+  const ingredientSort = canExcludeIngredient ? ['with', 'without'] : ['with']
   return (
     <Form.Item noStyle>
       <Row gutter={16}>
