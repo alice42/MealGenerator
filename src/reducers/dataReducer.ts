@@ -46,10 +46,11 @@ export default function recipesReducer(
         recipes: [...state.recipes, ...action.recipes],
         hasMore: action.hasMore,
         search: {
-          ...state.search
+          ...state.search,
         }
       };
     case actions.GET_RECIPES_SUCCESS:
+      console.log('A', action)
       return {
         ...state,
         recipes: [...state.recipes, ...action.recipes],

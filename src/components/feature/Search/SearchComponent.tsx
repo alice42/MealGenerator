@@ -44,7 +44,7 @@ const SearchComponent: FunctionComponent<searchTypes.PropsSearchComponent> = ({
   }
 
   return (
-    <div className="site-layout-background">
+    <div className="content-background">
       <Form
         name="recipe_search"
         form={form}

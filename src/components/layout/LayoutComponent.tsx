@@ -4,14 +4,12 @@ import ContentComponent from './content/Content'
 import FooterComponent from './footer/Footer'
 import HeaderComponent from './header/Header'
 
-// import '../../App.css'
-
-const LayoutContainer: FunctionComponent = ({ children }) => (
-  <Layout id="components-layout-demo-top">
+const LayoutComponent: FunctionComponent = ({ children }) => (
+  <Layout id="layout">
     <HeaderComponent />
     <ContentComponent children={children} />
     <FooterComponent />
   </Layout>
 )
 
-export default LayoutContainer
+export default LayoutComponent

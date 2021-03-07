@@ -41,5 +41,5 @@ module.exports = {
       },
       plugins: 
       [new hwp({favicon: path.join(__dirname, '/src/assets/favicon/favicon.ico'),
-       template: path.join(__dirname, '/public/index.html') })]
+       template: path.join(__dirname, '/dist/index.html') })]
     }

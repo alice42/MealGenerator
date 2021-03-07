@@ -19,7 +19,7 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
   if (error) return <div>{error}</div>
 
   return (
-    <div className="site-layout-background">
+    <div className="content-background">
       <ReduxLazyScroll
         isFetching={isLoading}
         errorMessage={error}
@@ -28,11 +28,19 @@ const RecipesComponent: FunctionComponent<PropsResultsComponent> = ({
       >
         <ResultsList recipesListItems={recipes} loading={isLoading} />
       </ReduxLazyScroll>
-      {!hasMore && !error && !!recipes.length && (
-        <div style={{ textAlign: 'center' }}>
-          All the posts has been loaded successfully.
-        </div>
-      )}
+      <div className="row posts-lazy-scroll__messages">
+        {/* {isLoading && (
+          <div className="alert alert-info"> Loading more posts... </div>
+        )} */}
+
+        {!hasMore && !error && !!recipes.length && (
+          <div className="alert alert-success">
+            All the posts has been loaded successfully.
+          </div>
+        )}
+
+        {error && <div className="alert alert-danger">{error}</div>}
+      </div>
     </div>
   )
 }

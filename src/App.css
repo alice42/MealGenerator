@@ -1,15 +1,28 @@
 @import '~antd/dist/antd.css';
 
 /* LAYOUT */
-#components-layout-demo-top .logo {
+#layout .logo {
   float: left;
   width: 120px;
   height: 31px;
   margin: 10px 24px 16px 0;
   background: rgba(255, 255, 255, 0.2);
 }
-.site-layout .site-layout-background {
+.content .content-background {
   background: #fff;
   padding: 24px;
   margin: 6px 0 0 0;
+}
+
+.header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+.nav {
+  display: flex;
+}
+
+.all-load {
+  text-align: center;
 }
