@@ -8,6 +8,7 @@ module.exports = {
       output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
+        publicPath: '/'
       },
       resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -31,6 +32,7 @@ module.exports = {
         ],
       },
       devServer: {
+        historyApiFallback: true,
         proxy: {
           '/api': {
             target: 'http://www.recipepuppy.com',
@@ -42,4 +44,5 @@ module.exports = {
       plugins: 
       [new hwp({favicon: path.join(__dirname, '/src/assets/favicon/favicon.ico'),
        template: path.join(__dirname, '/dist/index.html') })]
+       
     }

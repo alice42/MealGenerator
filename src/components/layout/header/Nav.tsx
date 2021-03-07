@@ -9,10 +9,10 @@ const Nav: FunctionComponent = () => (
         <Link to="/">Home</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/products/1">First Product</Link>
+        <Link to="/recipes/create">First Product</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <Link to="/products/2">Second Product</Link>
+        <Link to="/recipes/all">Second Product</Link>
       </Menu.Item>
     </Menu>
   </nav>

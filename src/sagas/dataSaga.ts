@@ -8,7 +8,6 @@ function* onLoadRecipes({ ingredients, query, page }: actionTypes.GetRecipesActi
   try {
     yield put(actionCreators.getRecipesRequest());
     const data = yield call(fetchRecipes, ingredients, query, page);
-    console.log('bbbb', data)
     if (data.results && data.results.length)
       yield put(actionCreators.getRecipesSuccess(data.results, page));
     else if (data.results && !data.results.length)

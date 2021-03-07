@@ -8,6 +8,9 @@ import {
   RouteComponentProps,
 } from 'react-router-dom'
 import './App.css'
+import CreateContainer from './components/feature/Create/CreateContainer'
+import AllContainer from './components/feature/All/AllContainer'
+import AllComponent from './components/feature/All/AllComponent'
 
 type TParams = { id: string }
 
@@ -21,14 +24,16 @@ function RecipeSearch() {
 }
 
 function Product({ match }: RouteComponentProps<TParams>) {
-  return <h2>This is a page for product with ID: {match.params.id} </h2>
+  const A = () =>
+    match.params.id === 'create' ? <CreateContainer /> : <AllContainer />
+  return <A />
 }
 
 const App: FunctionComponent = () => (
   <Router>
     <LayoutComponent>
       <Route path="/" exact component={RecipeSearch} />
-      <Route path="/products/:id" component={Product} />
+      <Route path="/recipes/:id" component={Product} />
     </LayoutComponent>
   </Router>
 )
