@@ -1,16 +1,71 @@
-import React, { FunctionComponent } from 'react'
-import { Form, Button, Input, Col, Row } from 'antd'
+import React, { FunctionComponent, useState } from 'react'
+import { Form, Button, Input, Col, Row, Upload } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
-import { recipesRef } from '../../../../firebase'
-import Demo from './CreateRecipeUploadImg'
+import { recipesRef, storage } from '../../../../firebase'
+import { UploadFile } from 'antd/lib/upload/interface'
+import ImgCrop from 'antd-img-crop'
 
 const CreateRecipeForm: FunctionComponent = () => {
+  const [fileList, setFileList] = useState<UploadFile[]>([])
+  const [file, setFile] = useState<File | undefined>()
+
+  const onPreview = async (file: any) => {
+    let src = file.url
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file.originFileObj)
+        reader.onload = () => resolve(reader.result)
+      })
+    }
+    const image = new Image()
+    image.src = src
+    const imgWindow = window.open(src)
+    imgWindow && imgWindow.document.write(image.outerHTML)
+  }
+
   const onFinish = (values: any) => {
-    recipesRef.push(values.recipe)
+    file &&
+      storage
+        .ref(`/images/${file.name}`)
+        .put(file)
+        .then(() => {
+          storage
+            .ref('images')
+            .child(file.name)
+            .getDownloadURL()
+            .then((url) => {
+              recipesRef.push({
+                name: values.recipe.name,
+                instructions: values.recipe.instructions,
+                ingredients: values.recipe.ingredients,
+                image: url,
+              })
+            })
+        })
   }
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo)
+  }
+
+  const props = {
+    onRemove: (file: UploadFile<any>) => {
+      const index = fileList.indexOf(file)
+      const newFileList = fileList.slice()
+      newFileList.splice(index, 1)
+      setFileList(newFileList)
+    },
+    beforeUpload: (file: UploadFile<any>) => {
+      setFileList([...fileList, file])
+      return false
+    },
+    onChange: (newFileList: any) => {
+      console.log('AAA', newFileList)
+      setFileList([newFileList.file])
+      setFile(newFileList.fileList[0])
+    },
+    fileList,
   }
 
   return (
@@ -53,14 +108,14 @@ const CreateRecipeForm: FunctionComponent = () => {
                         ]}
                         noStyle
                       >
-                        <Input placeholder="quantity" />
+                        <Input placeholder="Quantity" />
                       </Form.Item>
                     </Col>
                     <Col span={17} style={{ paddingRight: '8px' }}>
                       <Form.Item
                         {...field}
-                        name={[field.name, 'Ingredient name']}
-                        fieldKey={[field.fieldKey, 'Ingredient name']}
+                        name={[field.name, 'name']}
+                        fieldKey={[field.fieldKey, 'name']}
                         rules={[
                           {
                             required: true,
@@ -103,7 +158,13 @@ const CreateRecipeForm: FunctionComponent = () => {
         </Form.Item>
 
         <Form.Item label="Image">
-          <Demo />
+          <Form.Item name={['recipe', 'image']} noStyle>
+            <ImgCrop rotate>
+              <Upload {...props} listType="picture-card" onPreview={onPreview}>
+                {!file && '+ Upload'}
+              </Upload>
+            </ImgCrop>
+          </Form.Item>
         </Form.Item>
 
         <Form.Item>
