@@ -10,7 +10,8 @@
     "setup": "npm run clean && npm i",
     "build": "webpack",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "url": "https://github.com/alice42/WIP-MealGenerator/issues"
   },
   "dependencies": {
+    "@testing-library/react": "^11.2.5",
     "antd": "^4.13.0",
     "antd-img-crop": "^3.14.1",
     "axios": "^0.21.1",

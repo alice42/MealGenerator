@@ -4,10 +4,10 @@ import ContentComponent from './content/Content'
 import FooterComponent from './footer/Footer'
 import HeaderComponent from './header/Header'
 
-const LayoutComponent: FunctionComponent = ({ children }) => (
+const LayoutComponent: FunctionComponent = (restProps, { children }) => (
   <Layout id="layout">
     <HeaderComponent />
-    <ContentComponent children={children} />
+    <ContentComponent children={children} {...restProps} />
     <FooterComponent />
   </Layout>
 )

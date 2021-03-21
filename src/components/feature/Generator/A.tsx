@@ -1,9 +1,14 @@
+import { Button, Card } from 'antd'
+import Meta from 'antd/lib/card/Meta'
 import React, { useState, useEffect } from 'react'
-import AllRecipesListItem from './AllRecipesListItem'
 import { recipesRef } from '../../../../firebase'
+import defaultImg from '../../../assets/images/default_img.jpg'
+
+const random = (arr: number[]) => Math.floor(Math.random() * arr.length)
 
 function AllRecipesList() {
   const [recipes, setRecipes] = useState<any>([])
+  const [recipe, setRecipe] = useState<number>(-1)
 
   useEffect(() => {
     let newState: {
@@ -33,13 +38,29 @@ function AllRecipesList() {
       })
   }, [])
 
+  const handleClick = () => {
+    setRecipe(random(recipes))
+  }
   return (
     <>
-      {recipes.map((recipe: any, i: number) => (
-        <React.Fragment key={recipe.id}>
-          <AllRecipesListItem recipe={recipe} />
-        </React.Fragment>
-      ))}
+      {recipes[recipe] && (
+        <Card>
+          {/* <Skeleton loading={loading} active> */}
+          <Meta
+            avatar={
+              <img
+                style={{ width: 80, height: 80, borderRadius: 3 }}
+                src={recipes[recipe].imageURL || defaultImg}
+                alt={recipes[recipe].name}
+              />
+            }
+            title={recipes[recipe].name}
+            description={recipes[recipe].ingredients.join(',')}
+          />
+          {/* </Skeleton> */}
+        </Card>
+      )}
+      <Button onClick={handleClick}>Generate</Button>
     </>
   )
 }

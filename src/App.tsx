@@ -4,6 +4,7 @@ import SearchContainer from './components/feature/Search/SearchContainer'
 import LayoutComponent from './components/layout/LayoutComponent'
 import CreateContainer from './components/feature/Create/CreateContainer'
 import AllContainer from './components/feature/All/AllContainer'
+import GeneratorContainer from './components/feature/Generator/GeneratorContainer'
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +22,7 @@ const RecipeSearch = () => (
 )
 
 const Home = () => {
-  return <div className="content-background">A</div>
+  return <GeneratorContainer />
 }
 
 function RecipesPages({ match }: RouteComponentProps<TParams>) {
