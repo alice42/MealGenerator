@@ -4,6 +4,7 @@ import SearchContainer from './components/feature/Search/SearchContainer'
 import LayoutComponent from './components/layout/LayoutComponent'
 import CreateContainer from './components/feature/Create/CreateContainer'
 import AllContainer from './components/feature/All/AllContainer'
+import GroceriesContainer from './components/feature/Groceries/GroceriesContainer'
 import GeneratorContainer from './components/feature/Generator/GeneratorContainer'
 import {
   BrowserRouter as Router,
@@ -21,15 +22,30 @@ const RecipeSearch = () => (
   </>
 )
 
-const Home = () => {
-  return <GeneratorContainer />
-}
+const Create = () => (
+  <>
+    <CreateContainer />
+  </>
+)
+
+const Home = () => (
+  <>
+    <GeneratorContainer />
+    <GroceriesContainer />
+  </>
+)
+
+const All = () => (
+  <>
+    <AllContainer />
+  </>
+)
 
 function RecipesPages({ match }: RouteComponentProps<TParams>) {
   const recipePages: any = {
     search: <RecipeSearch />,
-    create: <CreateContainer />,
-    all: <AllContainer />,
+    create: <Create />,
+    all: <All />,
   }
   return recipePages[match.params.id]
 }

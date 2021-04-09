@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import * as generatorTypes from './homeInterfaces'
+import * as generatorTypes from './groceriesInterfaces'
 import A from './A'
 
 const AllComponent: FunctionComponent<generatorTypes.PropsGeneratorComponent> = ({
