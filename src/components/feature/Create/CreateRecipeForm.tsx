@@ -4,6 +4,8 @@ import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { recipesRef, storage } from '../../../../firebase'
 import { UploadFile } from 'antd/lib/upload/interface'
 import ImgCrop from 'antd-img-crop'
+import Tags from './Tags'
+import A from './Tags'
 
 const CreateRecipeForm: FunctionComponent = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
@@ -25,6 +27,7 @@ const CreateRecipeForm: FunctionComponent = () => {
   }
 
   const onFinish = (values: any) => {
+    console.log('ON FINISH', values)
     file &&
       storage
         .ref(`/images/${file.name}`)
@@ -157,15 +160,40 @@ const CreateRecipeForm: FunctionComponent = () => {
           </Form.Item>
         </Form.Item>
 
-        <Form.Item label="Image">
-          <Form.Item name={['recipe', 'image']} noStyle>
-            <ImgCrop rotate>
-              <Upload {...props} listType="picture-card" onPreview={onPreview}>
-                {!file && '+ Upload'}
-              </Upload>
-            </ImgCrop>
-          </Form.Item>
-        </Form.Item>
+        <Row
+          style={{
+            alignItems: 'baseline',
+            display: 'flex',
+            flexFlow: 'nowrap',
+          }}
+        >
+          <Col>
+            <Form.Item label="Image">
+              <Form.Item name={['recipe', 'image']} noStyle>
+                <ImgCrop rotate>
+                  <Upload
+                    {...props}
+                    listType="picture-card"
+                    onPreview={onPreview}
+                  >
+                    {!file && '+ Upload'}
+                  </Upload>
+                </ImgCrop>
+              </Form.Item>
+            </Form.Item>
+          </Col>
+          <Col flex={'auto'}>
+            <Form.Item label="Link">
+              <Form.Item noStyle name={['recipe', 'link']}>
+                <Input placeholder="Link" />
+              </Form.Item>
+            </Form.Item>
+
+            <Form.Item noStyle name={['recipe', 'tags']}>
+              <Tags />
+            </Form.Item>
+          </Col>
+        </Row>
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
